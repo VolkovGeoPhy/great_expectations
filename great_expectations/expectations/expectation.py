@@ -1579,7 +1579,6 @@ class BatchExpectation(Expectation, ABC):
 
     domain_keys: ClassVar[Tuple[str, ...]] = (
         "batch_id",
-        "table",
     )
     metric_dependencies: ClassVar[Tuple[str, ...]] = ()
     domain_type: ClassVar[MetricDomainTypes] = MetricDomainTypes.TABLE
@@ -1815,7 +1814,6 @@ class ColumnAggregateExpectation(BatchExpectation, ABC):
 
     domain_keys: ClassVar[Tuple[str, ...]] = (
         "batch_id",
-        "table",
         "column",
         "row_condition",
         "condition_parser",
@@ -1867,7 +1865,6 @@ class ColumnMapExpectation(BatchExpectation, ABC):
     map_metric: ClassVar[Optional[str]] = None
     domain_keys: ClassVar[Tuple[str, ...]] = (
         "batch_id",
-        "table",
         "column",
         "row_condition",
         "condition_parser",
@@ -2131,7 +2128,6 @@ class ColumnPairMapExpectation(BatchExpectation, ABC):
     map_metric: ClassVar[Optional[str]] = None
     domain_keys = (
         "batch_id",
-        "table",
         "column_A",
         "column_B",
         "row_condition",
@@ -2385,7 +2381,6 @@ class MulticolumnMapExpectation(BatchExpectation, ABC):
     map_metric: ClassVar[Optional[str]] = None
     domain_keys = (
         "batch_id",
-        "table",
         "column_list",
         "row_condition",
         "condition_parser",
