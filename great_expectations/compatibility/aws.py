@@ -94,13 +94,8 @@ except (ImportError, AttributeError):
 
 try:
     from sqlalchemy_redshift.dialect import GEOMETRY
-except Exception:
+except (ImportError, AttributeError):
     GEOMETRY = REDSHIFT_NOT_IMPORTED
-
-try:
-    from sqlalchemy_redshift.dialect import GEOGRAPHY
-except Exception:
-    GEOGRAPHY = REDSHIFT_NOT_IMPORTED
 
 try:
     from sqlalchemy_redshift.dialect import SUPER
