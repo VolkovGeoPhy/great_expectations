@@ -99,7 +99,7 @@ except (ImportError, AttributeError):
 
 try:
     from sqlalchemy_redshift.dialect import SUPER
-except Exception:
+except (ImportError, AttributeError):
     SUPER = REDSHIFT_NOT_IMPORTED
 
 try:
