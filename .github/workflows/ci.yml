@@ -425,6 +425,7 @@ jobs:
       PACT_DO_NOT_TRACK: true
       SNOWFLAKE_CI_ACCOUNT: ${{secrets.SNOWFLAKE_CI_ACCOUNT}}
       SNOWFLAKE_CI_USER_PASSWORD: ${{secrets.SNOWFLAKE_CI_USER_PASSWORD}}
+      CLOUD_AMQP_CONNECTION_STRING: ${{secrets.CLOUD_AMQP_CONNECTION_STRING}}
       LOGGING_LEVEL: DEBUG
       ENVIRONMENT: local
 
@@ -473,8 +474,12 @@ jobs:
           docker compose -f assets/docker/mercury/docker-compose.yml logs
 
       - name: Run the tests
-        run:
-          invoke ci-tests 'cloud' --up-services --verbose  --reports -W default::great_expectations.datasource.fluent.GxInvalidDatasourceWarning
+        run: invoke ci-tests 'cloud' --up-services --verbose  --reports -W default::great_expectations.datasource.fluent.GxInvalidDatasourceWarning
+
+      - name: Show cloud logs on test failure
+        if: failure()
+        run: |
+          docker compose -f assets/docker/mercury/docker-compose.yml logs
 
           # upload coverage report to codecov
       - name: Upload coverage reports to Codecov
