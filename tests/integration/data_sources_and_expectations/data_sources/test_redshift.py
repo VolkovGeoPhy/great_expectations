@@ -47,13 +47,7 @@ class TestRedshiftDataTypes:
         column_type = REDSHIFT_TYPES.SUPER
         batch_setup = RedshiftBatchTestSetup(
             config=RedshiftDatasourceTestConfig(column_types={self.COLUMN: column_type}),
-            data=pd.DataFrame(
-                {
-                    self.COLUMN: [
-                        "{ \"type\": \"Point\", \"coordinates\": [1.0, 2.0] }"
-                    ]
-                }
-            ),
+            data=pd.DataFrame({self.COLUMN: ['{ "type": "Point", "coordinates": [1.0, 2.0] }']}),
             extra_data={},
             context=get_context(mode="ephemeral"),
         )
